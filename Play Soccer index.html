@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Soccer Trenton | 501(c)(3) Non-Profit</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --mercer-blue: #003366;
+            --grass-green: #2E8B57;
+            --light-gray: #f4f4f4;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--grass-green);
+            color: var(--white);
+        }
+
+        .btn-primary:hover { background-color: #246b43; }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            color: var(--mercer-blue);
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--mercer-blue);
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a:hover { color: var(--grass-green); }
+
+        .donate-btn {
+            background-color: var(--grass-green);
+            padding: 8px 20px;
+            border-radius: 4px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('https://images.unsplash.com/photo-1517466787929-bc90951d64b8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- ABOUT & FOUNDER --- */
+        .about-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .founder-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .founder-img {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 400px;
+            width: 100%;
+            object-fit: cover;
+            background-color: #ddd; /* Placeholder color */
+        }
+
+        /* --- PROGRAMS --- */
+        .programs-section {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            height: 200px;
+            background-color: #ccc;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            color: var(--mercer-blue);
+            margin-bottom: 10px;
+        }
+
+        /* --- INTERNATIONAL --- */
+        .international-section {
+            padding: 80px 0;
+            background-color: var(--mercer-blue);
+            color: var(--white);
+        }
+
+        .international-section .section-title {
+            color: var(--white);
+        }
+
+        .int-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- WORLD CUP 2026 --- */
+        .worldcup-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .worldcup-content {
+            background-color: #fff;
+            border: 2px solid var(--grass-green);
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #222;
+            color: #ccc;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .disclaimer {
+            margin-top: 20px;
+            font-style: italic;
+            opacity: 0.7;
+            font-size: 0.8rem;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .founder-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+            nav ul { display: none; } /* Simple hide for mobile for this demo */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                ⚽ Play Soccer Trenton
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#international">History</a></li>
+                    <li><a href="#worldcup">World Cup 2026</a></li>
+                    <li><a href="#" class="donate-btn">Donate</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>More Than Just a Game</h1>
+            <p>Fostering health, wellness, and family bonds for the youth of Mercer County through purposeful play.</p>
+            <a href="#programs" class="btn btn-primary">Our Programs</a>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">About Our Founder</h2>
+            <div class="founder-grid">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Judy McPherson" class="founder-img">
+                    </div>
+                <div>
+                    <h3>Judy McPherson</h3>
+                    <p style="margin-bottom: 15px;"><strong>Founder & Manager</strong></p>
+                    <p>Play Soccer Trenton is led by Judy McPherson, a former international banker with a lifelong passion for community service. Following a distinguished career in finance, Judy moved to Mount Desert Island, Maine, after she and her husband retired from the Princeton, New Jersey area, where Mr. McPherson served as Superintendent of Schools.</p>
+                    <br>
+                    <p>Despite the distance, Judy remains deeply committed to Mercer County. Supported by the NJ Department of Recreation, she manages PST with a vision to expand our affiliation from <strong>16 schools today to 19 schools by 2026</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="programs" class="programs-section">
+        <div class="container">
+            <h2 class="section-title">Our Programs</h2>
+            <div class="program-grid">
+                
+                <div class="program-card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="card-content">
+                        <h3>Bonding Beyond Bars</h3>
+                        <p><strong>Restorative Justice Focus:</strong> An innovative program allowing incarcerated fathers to spend recreational time playing soccer with their children. This eases the path for reentry and maintains critical family bonds.</p>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="card-content">
+                        <h3>Purposeful Play</h3>
+                        <p>We use soccer as a vehicle for education. Our curriculum integrates sport with social-emotional learning, teaching conflict resolution, leadership, and teamwork on and off the pitch.</p>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="card-content">
+                        <h3>Health & Wellness</h3>
+                        <p>Supported by county health initiatives, we focus on physical activity to combat sedentary lifestyles, alongside nutritional education to support healthy living for inner-city youth.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="international" class="international-section">
+        <div class="container">
+            <h2 class="section-title">International Roots</h2>
+            <div class="int-content">
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    Play Soccer Trenton was formerly part of <strong>Play Soccer Network International (PSNI)</strong>, a global network spanning six African countries dedicated to using soccer for education and wellness.
+                </p>
+                <p>
+                    The international group is headquartered in <strong>Ghana</strong> and chaired by the distinguished international businessman <strong>Kweku Awotwi</strong>. While we now operate independently in New Jersey, we carry forward the PSNI mission of community building and support.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="worldcup" class="worldcup-section">
+        <div class="container">
+            <div class="worldcup-content">
+                <h2 style="color: var(--mercer-blue); margin-bottom: 20px;">World Cup 2026 & Future Goals</h2>
+                <p style="margin-bottom: 20px;">
+                    With the World Cup craze about to hit the United States, there has never been a better time to get involved. We are creating opportunities for inner-city children to engage with the sport and healthy living principles during this historic event.
+                </p>
+                <p style="font-weight: bold; color: var(--grass-green);">
+                    Goal: Expanding to 19 Mercer County schools by the end of 2026.
+                </p>
+                <br>
+                <a href="#" class="btn btn-primary">Join Our Supporters</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h3>Play Soccer Trenton</h3>
+            <p>A 501(c)(3) Non-Profit Organization</p>
+            <p>Trenton, New Jersey | Mercer County</p>
+            
+            <div class="disclaimer">
+                <p>Play Soccer Trenton is not affiliated with FIFA. We are an independent organization that welcomes contributions and inquiries from all lovers of soccer, children, and healthy living.</p>
+                <p>&copy; 2025 Play Soccer Trenton. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
